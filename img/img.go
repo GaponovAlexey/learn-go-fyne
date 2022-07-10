@@ -1,12 +1,11 @@
 package main
 
 import (
-	"image/color"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
 )
 
 func main() {
@@ -14,14 +13,15 @@ func main() {
 	a := app.New()
 	w := a.NewWindow("Hello from GO")
 	w.Resize(fyne.NewSize(900, 600))
-	color:= color.NRGBA{R:123, G:45, B: 120, A: 211}
-	label:= canvas.NewText("color", color)
 
+	img1 := canvas.NewImageFromFile("img/1.jpg")
+	// img2 := canvas.NewImageFromFile("img/2.jpg")
+
+	label := widget.NewLabel("Картинка")
 
 w.SetContent(
-	container.NewVBox(
-		label,
-	))
+	container.NewGridWithColumns(2,img1,label),
+)
 
 	w.ShowAndRun()
 }
