@@ -16,7 +16,6 @@ func main() {
 	w.Resize(fyne.NewSize(500, 400))
 
 	label := widget.NewLabel("Регистрация")
-	label.TextStyle = fyne.TextStyle{Bold: true}
 	label.Move(fyne.NewPos(200, 2))
 	//entry
 	name := widget.NewEntry()
