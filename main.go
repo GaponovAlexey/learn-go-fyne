@@ -1,33 +1,33 @@
 package main
 
 import (
+	"os"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
 func main() {
 
 	a := app.New()
+	a.Settings().SetTheme(theme.DarkTheme())
 	w := a.NewWindow("Hello from GO")
-	w.Resize(fyne.NewSize(400, 500))
-	res1 := widget.NewLabel("BUTTOn")
-	res2 := widget.NewLabel("BUTTOn")
-	res3 := widget.NewLabel("BUTTOn")
-	res4 := widget.NewLabel("BUTTOn")
+	w.Resize(fyne.NewSize(300, 400))
 
-	btn1 := widget.NewButton("green", func() {})
-	btn2 := widget.NewButton("click2", func() {})
-	btn3 := widget.NewButton("click3", func() {})
-	btn4 := widget.NewButton("click4", func() {})
-
-	btn_box := container.NewHBox( btn1, btn2, btn3, btn4)
-	label_box := container.NewVBox(res1, res2,res3, res4)
-
-	content:= container.NewHBox(btn_box, label_box)
+	entry := widget.NewEntry()
+	entry.SetPlaceHolder("Text...")
+	cont := widget.NewLabel("")
+	btn := widget.NewButton("save", func() {
+		file,_ := os.Create("info.txt") //создание
+		defer file.Close()// закрытие
+		file.WriteString(entry.Text) // запись перезапись
+		cont.SetText(entry.Text) // запись в переменую
+	})
 	w.SetContent(
-		content,
+		container.NewVBox(entry, btn, cont),
 	)
 
 	w.ShowAndRun()
