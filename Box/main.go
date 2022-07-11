@@ -18,6 +18,7 @@ func main() {
 	res4 := widget.NewLabel("BUTTOn")
 
 	btn1 := widget.NewButton("green", func() {})
+	btn1.Resize(fyne.NewSize(100,40))
 	btn2 := widget.NewButton("click2", func() {})
 	btn3 := widget.NewButton("click3", func() {})
 	btn4 := widget.NewButton("click4", func() {})

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"os"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
@@ -15,20 +13,22 @@ func main() {
 	a := app.New()
 	a.Settings().SetTheme(theme.DarkTheme())
 	w := a.NewWindow("Hello from GO")
-	w.Resize(fyne.NewSize(300, 400))
+	w.Resize(fyne.NewSize(400, 400))
 
-	entry := widget.NewEntry()
-	entry.SetPlaceHolder("Text...")
-	cont := widget.NewLabel("")
-	btn := widget.NewButton("save", func() {
-		file,_ := os.Create("info.txt") //создание
-		defer file.Close()// закрытие
-		file.WriteString(entry.Text) // запись перезапись
-		cont.SetText(entry.Text) // запись в переменую
-	})
+	btn := widget.NewButton("Click", func() {	})
+	btn.Resize(fyne.NewSize(200,20))
+	btn.Move(fyne.NewPos(10,50))
+
+	btn2 := widget.NewButton("Click", func() {	})
+	btn2.Resize(fyne.NewSize(100,20))
+	btn2.Move(fyne.NewPos(10,30))
+
+
+	cont:= container.NewWithoutLayout(btn, btn2)
 	w.SetContent(
-		container.NewVBox(entry, btn, cont),
+		cont,
 	)
+
 
 	w.ShowAndRun()
 }
