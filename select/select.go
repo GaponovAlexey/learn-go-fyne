@@ -19,7 +19,7 @@ func main() {
 	//VScroll
 	//HScroll
 	label := widget.NewLabel("")
-	sel := widget.NewSelectEntry(
+	sel := widget.NewSelect(
 		[]string{
 			"op1",
 			"op2",
@@ -27,15 +27,16 @@ func main() {
 			"op4",
 			"op5",
 		},
+		nil,
 	)
 	sel.PlaceHolder = "выбери из списка"
 	//btn
-	btn := widget.NewButton("select", func() {
-		label.SetText("вы выбрали: " + sel.Text)
+	btn:= widget.NewButton("select", func() {
+		label.SetText("вы выбрали: " + sel.Selected)
 	})
 
 	//config
-	w.SetContent(container.NewVBox(sel, btn, label))
+	w.SetContent(container.NewVBox(sel,btn, label))
 	w.ShowAndRun()
 	a.Run()
 }

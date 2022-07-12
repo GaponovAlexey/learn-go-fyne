@@ -24,9 +24,10 @@ func main() {
 	// rec1 := canvas.NewRectangle(color.RGBA{0, 22, 55, 255})
 	// rec2 := canvas.NewRectangle(color.RGBA{0, 32, 45, 255})
 	// rec3 := canvas.NewRectangle(color.RGBA{0, 42, 25, 255})
-	img1.SetMinSize(fyne.NewSize(200, 100))
-	img2.SetMinSize(fyne.NewSize(200, 100))
-	img3.SetMinSize(fyne.NewSize(200, 100))
+	img1.SetMinSize(fyne.NewSize(400, 300))
+	img2.SetMinSize(fyne.NewSize(400, 300))
+	img3.SetMinSize(fyne.NewSize(400, 300))
+
 
 	scr := container.NewHScroll(
 		container.NewHBox(
