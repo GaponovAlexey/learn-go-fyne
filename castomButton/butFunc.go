@@ -23,7 +23,7 @@ func main() {
 
 	but1 := createColorButton(color.RGBA{10, 129, 160, 12},
 		widget.NewButton("but", func() {}))
-	but2 := createImg(img, widget.NewButton("but", func() {}))
+	but2 := createImgButton(img, widget.NewButton("but", func() {}))
 	
 	w.SetContent(container.NewVBox(
 		but1,
@@ -41,7 +41,7 @@ func createColorButton(c color.RGBA, b *widget.Button) *fyne.Container {
 	return button
 }
 
-func createImg(img *canvas.Image, b *widget.Button) *fyne.Container {
+func createImgButton(img *canvas.Image, b *widget.Button) *fyne.Container {
 	button := container.New(
 		layout.NewMaxLayout(),
 		img,
