@@ -1,41 +1,29 @@
 package main
 
 import (
+	"image/color"
+	"time"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/theme"
-	"fyne.io/fyne/v2/widget"
+	"fyne.io/fyne/v2/canvas"
 )
 
 func main() {
-	a := app.New()
-	a.Settings().SetTheme(theme.DarkTheme())
-	w := a.NewWindow("Hello from GO")
-	ico, _ := fyne.LoadResourceFromPath("f.ico")
-	w.SetIcon(ico)
-	w.Resize(fyne.NewSize(300, 400))
+	myApp := app.New()
+	w := myApp.NewWindow("Canvas")
+	w.Resize(fyne.NewSize(100, 100))
+	myCanvas := w.Canvas()
 
-	//VScroll
-	//HScroll
-	label := widget.NewLabel("")
-	sel := widget.NewSelectEntry(
-		[]string{
-			"op1",
-			"op2",
-			"op3",
-			"op4",
-			"op5",
-		},
-	)
-	sel.PlaceHolder = "выбери из списка"
-	//btn
-	btn := widget.NewButton("select", func() {
-		label.SetText("вы выбрали: " + sel.Text)
-	})
+	blue := color.NRGBA{R: 0, G: 0, B: 180, A: 255}
+	rect := canvas.NewRectangle(blue)
+	myCanvas.SetContent(rect)
 
-	//config
-	w.SetContent(container.NewVBox(sel, btn, label))
+	go func() {
+		time.Sleep(time.Second)
+		green := color.NRGBA{R: 0, G: 180, B: 0, A: 255}
+		rect.FillColor = green
+	}()
+
 	w.ShowAndRun()
-	a.Run()
 }
